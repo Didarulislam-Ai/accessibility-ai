@@ -1,0 +1,12 @@
+const CHUNK_PUBLIC_PATH = "server/app/api/stripe-portal/route.js";
+const runtime = require("../../../chunks/[turbopack]_runtime.js");
+runtime.loadChunk("server/chunks/node_modules_next_aaf6652b._.js");
+runtime.loadChunk("server/chunks/node_modules_stripe_esm_94ce6600._.js");
+runtime.loadChunk("server/chunks/node_modules_next-auth_f79bd59c._.js");
+runtime.loadChunk("server/chunks/node_modules_openid-client_ef38b3be._.js");
+runtime.loadChunk("server/chunks/node_modules_c6205b71._.js");
+runtime.loadChunk("server/chunks/node_modules_feeac4b2._.js");
+runtime.loadChunk("server/chunks/[root-of-the-server]__e6c2cc42._.js");
+runtime.getOrInstantiateRuntimeModule("[project]/.next-internal/server/app/api/stripe-portal/route/actions.js [app-rsc] (server actions loader, ecmascript)", CHUNK_PUBLIC_PATH);
+runtime.getOrInstantiateRuntimeModule("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/app/api/stripe-portal/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)", CHUNK_PUBLIC_PATH);
+module.exports = runtime.getOrInstantiateRuntimeModule("[project]/node_modules/next/dist/esm/build/templates/app-route.js { INNER_APP_ROUTE => \"[project]/app/api/stripe-portal/route.ts [app-route] (ecmascript)\" } [app-route] (ecmascript)", CHUNK_PUBLIC_PATH).exports;
