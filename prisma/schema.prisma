@@ -85,10 +85,11 @@ model AccessibilityIssue {
   category    String
   description String
   element     String
-  status      String   @default("not-fixed")
+  status      String   @default("open")
   severity    String
   fix         String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+  fixedAt     DateTime?
   user        User     @relation(fields: [userId], references: [id])
 }

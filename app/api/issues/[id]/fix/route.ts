@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma';
 
 export async function POST(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: { id: string } }
 ) {
   try {
     const session = await getServerSession();
@@ -13,9 +13,11 @@ export async function POST(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
+    const { id } = context.params;
+
     const issue = await prisma.accessibilityIssue.findUnique({
       where: {
-        id: params.id,
+        id: id,
         userId: session.user.id
       }
     });
@@ -26,7 +28,7 @@ export async function POST(
 
     await prisma.accessibilityIssue.update({
       where: {
-        id: params.id
+        id: id
       },
       data: {
         status: 'fixed',
