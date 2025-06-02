@@ -78,7 +78,7 @@ export function AccessibilityIssues({ issues, onMarkFix }: AccessibilityIssuesPr
                     onClick={() => setExpandedIssue(expandedIssue === issue.id ? null : issue.id)}
                     className="text-blue-600 hover:text-blue-800 text-sm"
                   >
-                    {expandedIssue === issue.id ? 'Hide Details' : 'Show Details'}
+                    {expandedIssue === issue.id ? "Hide Details" : "Show Details"}
                   </button>
                   
                   {expandedIssue === issue.id && (
@@ -103,10 +103,10 @@ export function AccessibilityIssues({ issues, onMarkFix }: AccessibilityIssuesPr
                         <h4 className="font-semibold mb-2">How to Fix:</h4>
                         <ol className="list-decimal list-inside space-y-2">
                           <li>Copy the suggested fix code</li>
-                          <li>Locate the element in your website's code</li>
+                          <li>Locate the element in your website&apos;s code</li>
                           <li>Replace the current code with the suggested fix</li>
                           <li>Test the change to ensure it works as expected</li>
-                          <li>Click "Mark as Fixed" once you've implemented the fix</li>
+                          <li>Click &quot;Mark as Fixed&quot; once you&apos;ve implemented the fix</li>
                         </ol>
                       </div>
                     </div>

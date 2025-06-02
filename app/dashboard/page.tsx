@@ -69,7 +69,7 @@ export default function Dashboard() {
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Accessibility Dashboard</h1>
         <p className="text-gray-600">
-          Review and fix accessibility issues found on your website. Click "Show Details" to see how to fix each issue.
+          Review and fix accessibility issues found on your website. Click &quot;Show Details&quot; to see how to fix each issue.
         </p>
       </div>
 
@@ -77,11 +77,11 @@ export default function Dashboard() {
         <div className="bg-blue-50 p-4 rounded-lg">
           <h2 className="text-lg font-semibold mb-2">How to Fix Issues</h2>
           <ol className="list-decimal list-inside space-y-2">
-            <li>Click "Show Details" on any issue to see the current code and suggested fix</li>
+            <li>Click &quot;Show Details&quot; on any issue to see the current code and suggested fix</li>
             <li>Copy the suggested fix code</li>
             <li>Make the changes on your website</li>
             <li>Test the changes to ensure they work correctly</li>
-            <li>Click "Mark as Fixed" once you've implemented the fix</li>
+            <li>Click &quot;Mark as Fixed&quot; once you&apos;ve implemented the fix</li>
           </ol>
         </div>
       </div>

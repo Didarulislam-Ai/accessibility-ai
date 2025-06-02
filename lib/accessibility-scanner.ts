@@ -143,7 +143,7 @@ function checkTextResizing(document: Document, issues: AccessibilityIssue[]) {
           });
         }
       }
-    } catch (e) {
+    } catch {
       // Skip cross-origin stylesheets
     }
   }
@@ -247,7 +247,7 @@ function checkFocusVisible(document: Document, issues: AccessibilityIssue[]) {
           });
         }
       }
-    } catch (e) {
+    } catch {
       // Skip cross-origin stylesheets
     }
   }
@@ -265,24 +265,16 @@ function checkLanguage(document: Document, issues: AccessibilityIssue[]) {
     });
   }
   // Check for language changes within the page (WCAG 2.0 AA 3.1.2)
-  document.querySelectorAll('[lang]').forEach((element, index) => {
-      if (element.closest('[lang]') !== document.documentElement) {
-           // Check if lang is different from the main document language
-           const mainLang = document.documentElement.getAttribute('lang');
-           const elementLang = element.getAttribute('lang');
-           if (mainLang && elementLang && mainLang !== elementLang) {
-                // This check is basic and assumes any nested lang is intentional, 
-                // but verifies its presence.
-           }
-           // If lang is present on a nested element, it's considered a pass for 3.1.2 for that element.
-           // More advanced checks would verify correctness and context.
-      } else if (!element.parentElement?.hasAttribute('lang') && !document.documentElement.hasAttribute('lang')) {
-          // This case should ideally be covered by the main lang check, but included for robustness.
+  document.querySelectorAll('[lang]').forEach((element) => {
+    if (element.closest('[lang]') !== document.documentElement) {
+      // Check if lang is different from the main document language
+      const mainLang = document.documentElement.getAttribute('lang');
+      const elementLang = element.getAttribute('lang');
+      if (mainLang && elementLang && mainLang !== elementLang) {
+        // This check is basic and assumes any nested lang is intentional
       }
+    }
   });
-
-   // Add a general check if no nested lang attributes are found but might be expected.
-   // This is difficult to automate precisely, so focusing on the presence of lang attribute for parts.
 }
 
 function checkLabelsAndInstructions(document: Document, issues: AccessibilityIssue[]) {
