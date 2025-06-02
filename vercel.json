@@ -5,6 +5,17 @@
   "installCommand": "npm install",
   "framework": "nextjs",
   "regions": ["iad1"],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,OPTIONS,PATCH,DELETE,POST,PUT",
+        "Access-Control-Allow-Headers": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version"
+      },
+      "continue": true
+    }
+  ],
   "env": {
     "NEXTAUTH_URL": "https://accessibility-ai-beryl.vercel.app/",
     "GOOGLE_CLIENT_ID": "774361993448-n0oo920sce9hrdr8hhb9uh5upc0p8t20.apps.googleusercontent.com",
