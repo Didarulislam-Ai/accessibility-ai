@@ -149,20 +149,42 @@ function checkTextResizing(document: Document, issues: AccessibilityIssue[]) {
   }
 }
 
-async function checkColorContrast(element: Element): Promise<AccessibilityIssue[]> {
-  const issues: AccessibilityIssue[] = [];
-  try {
-    const style = window.getComputedStyle(element);
-    const backgroundColor = style.backgroundColor;
-    const color = style.color;
-    
-    // Add color contrast check logic here
-    // This is a placeholder for actual color contrast calculation
-    
-  } catch {
-    console.error("Error checking color contrast");
+function checkColorContrast(document: Document, issues: AccessibilityIssue[]) {
+  document.querySelectorAll('*').forEach((element, index) => {
+    try {
+      const style = window.getComputedStyle(element);
+      const backgroundColor = style.backgroundColor;
+      const color = style.color;
+      
+      if (backgroundColor && color) {
+        const contrast = calculateContrast(backgroundColor, color);
+        if (contrast < 4.5) {
+          issues.push({
+            id: `color-contrast-${index}`,
+            type: 'Low Color Contrast',
+            element: element.outerHTML,
+            description: 'Text color does not provide sufficient contrast with background',
+            severity: 'serious',
+            message: 'Text color does not provide sufficient contrast with background',
+            selector: getSelector(element)
+          });
+        }
+      }
+    } catch (error) {
+      console.error("Error checking color contrast:", error);
+    }
+  });
+}
+
+// Helper function to get CSS selector for an element
+function getSelector(element: Element): string {
+  if (element.id) {
+    return `#${element.id}`;
   }
-  return issues;
+  if (element.className) {
+    return `.${element.className.split(' ').join('.')}`;
+  }
+  return element.tagName.toLowerCase();
 }
 
 function checkImagesOfText(document: Document, issues: AccessibilityIssue[]) {
@@ -585,13 +607,16 @@ function checkFormLabels(form: HTMLFormElement): AccessibilityIssue[] {
   const issues: AccessibilityIssue[] = [];
   const inputs = form.querySelectorAll("input, select, textarea");
   
-  inputs.forEach((input) => {
+  inputs.forEach((input, index) => {
     if (!input.hasAttribute("id")) {
       issues.push({
+        id: `form-label-${index}`,
         type: "form",
+        element: input.outerHTML,
+        description: "Form control missing ID",
+        severity: "serious",
         message: "Form control missing ID",
-        selector: getSelector(input),
-        impact: "serious"
+        selector: getSelector(input)
       });
     }
   });

@@ -5,6 +5,9 @@ export interface AccessibilityIssue {
   description: string;
   severity: 'critical' | 'serious' | 'moderate' | 'minor';
   fix?: string;
+  message?: string;
+  selector?: string;
+  impact?: 'critical' | 'serious' | 'moderate' | 'minor';
 }
 
 export interface Subscription {
