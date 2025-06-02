@@ -3,7 +3,6 @@ const nextConfig = {
   output: 'standalone',
   poweredByHeader: false,
   reactStrictMode: true,
-  swcMinify: true,
   images: {
     domains: ['lh3.googleusercontent.com'], // For Google profile images
   },
@@ -14,6 +13,9 @@ const nextConfig = {
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
     DATABASE_URL: process.env.DATABASE_URL,
   },
+  experimental: {
+    serverActions: true,
+  }
 }
 
 module.exports = nextConfig 

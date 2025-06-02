@@ -59,7 +59,20 @@ export function AccessibilityIssues({ issues, onMarkFix }: AccessibilityIssuesPr
                     <h3 className="text-lg font-semibold">{issue.type}</h3>
                   </div>
                   
-                  <p className="text-gray-600 mb-2">{issue.description}</p>
+                  <div className="text-sm text-gray-500">
+                    {issue.impact === "critical" && (
+                      <span className="text-red-600">Critical</span>
+                    )}
+                    {issue.impact === "serious" && (
+                      <span className="text-orange-600">Serious</span>
+                    )}
+                    {issue.impact === "moderate" && (
+                      <span className="text-yellow-600">Moderate</span>
+                    )}
+                    {issue.impact === "minor" && (
+                      <span className="text-blue-600">Minor</span>
+                    )}
+                  </div>
                   
                   <button
                     onClick={() => setExpandedIssue(expandedIssue === issue.id ? null : issue.id)}
@@ -106,6 +119,16 @@ export function AccessibilityIssues({ issues, onMarkFix }: AccessibilityIssuesPr
                 >
                   Mark as Fixed
                 </button>
+              </div>
+              <div className="mt-2">
+                <p className="text-sm text-gray-600">
+                  {issue.message}
+                </p>
+                {issue.selector && (
+                  <p className="text-sm text-gray-500 mt-1">
+                    Element: <code className="bg-gray-100 px-1 py-0.5 rounded">{issue.selector}</code>
+                  </p>
+                )}
               </div>
             </div>
           ))}

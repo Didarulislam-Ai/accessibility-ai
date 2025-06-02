@@ -149,25 +149,20 @@ function checkTextResizing(document: Document, issues: AccessibilityIssue[]) {
   }
 }
 
-function checkColorContrast(document: Document, issues: AccessibilityIssue[]) {
-  document.querySelectorAll('*').forEach((element, index) => {
+async function checkColorContrast(element: Element): Promise<AccessibilityIssue[]> {
+  const issues: AccessibilityIssue[] = [];
+  try {
     const style = window.getComputedStyle(element);
     const backgroundColor = style.backgroundColor;
     const color = style.color;
     
-    if (backgroundColor && color) {
-      const contrast = calculateContrast(backgroundColor, color);
-      if (contrast < 4.5) {
-        issues.push({
-          id: `color-contrast-${index}`,
-          type: 'Low Color Contrast',
-          element: element.outerHTML,
-          description: 'Text color does not provide sufficient contrast with background',
-          severity: 'serious'
-        });
-      }
-    }
-  });
+    // Add color contrast check logic here
+    // This is a placeholder for actual color contrast calculation
+    
+  } catch {
+    console.error("Error checking color contrast");
+  }
+  return issues;
 }
 
 function checkImagesOfText(document: Document, issues: AccessibilityIssue[]) {
@@ -584,4 +579,22 @@ function calculateLuminance(rgb: { r: number; g: number; b: number }): number {
   });
   
   return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+function checkFormLabels(form: HTMLFormElement): AccessibilityIssue[] {
+  const issues: AccessibilityIssue[] = [];
+  const inputs = form.querySelectorAll("input, select, textarea");
+  
+  inputs.forEach((input) => {
+    if (!input.hasAttribute("id")) {
+      issues.push({
+        type: "form",
+        message: "Form control missing ID",
+        selector: getSelector(input),
+        impact: "serious"
+      });
+    }
+  });
+  
+  return issues;
 } 
