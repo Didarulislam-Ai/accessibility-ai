@@ -7,7 +7,9 @@ const nextConfig = {
     domains: ['lh3.googleusercontent.com'], // For Google profile images
   },
   experimental: {
-    serverActions: true,
+    serverActions: {
+      allowedOrigins: ['localhost:3000', 'accessibility-ai-beryl.vercel.app']
+    }
   }
 }
 

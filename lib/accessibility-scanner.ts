@@ -41,6 +41,12 @@ export async function scanAccessibility(html: string, scanLevel: 'standard' | 'f
   checkParsing(document, issues); // Checks 4.1.1 A
   checkNameRoleValue(document, issues); // Checks 4.1.2 A
 
+  // Check form labels
+  document.querySelectorAll('form').forEach((form) => {
+    const formIssues = checkFormLabels(form as HTMLFormElement);
+    issues.push(...formIssues);
+  });
+
   // --- Additional WCAG 2.0 AA Checks which is AODA compliant (Full Scan for Enterprise) ---
   if (scanLevel === 'full') {
       // Re-running some checks that have AA components for clarity, 
