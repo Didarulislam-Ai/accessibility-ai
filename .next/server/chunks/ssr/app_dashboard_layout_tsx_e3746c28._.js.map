@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 7, "column": 0}, "map": {"version":3,"sources":["file:///Users/didershine/Documents/accessibility-dashboard/app/dashboard/layout.tsx"],"sourcesContent":["import React from \"react\";\n\nexport default function DashboardLayout({ children }: { children: React.ReactNode }) {\n  return (\n    <main className=\"flex-1 p-8\">\n      {children}\n    </main>\n  );\n}"],"names":[],"mappings":";;;;;AAEe,SAAS,gBAAgB,EAAE,QAAQ,EAAiC;IACjF,qBACE,8OAAC;QAAK,WAAU;kBACb;;;;;;AAGP","debugId":null}}]
-}
