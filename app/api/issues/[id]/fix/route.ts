@@ -1,10 +1,10 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/prisma';
 
 export async function POST(
-  request: Request,
-  context: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: { id: string } }
 ) {
   try {
     const session = await getServerSession();
@@ -13,7 +13,7 @@ export async function POST(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { id } = context.params;
+    const { id } = params;
 
     const issue = await prisma.accessibilityIssue.findUnique({
       where: {
@@ -41,4 +41,4 @@ export async function POST(
     console.error('Error marking issue as fixed:', error);
     return NextResponse.json({ error: 'Failed to mark issue as fixed' }, { status: 500 });
   }
-} 
+}
