@@ -2,13 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/prisma';
 
-interface RouteParams {
-  params: { id: string };
-}
-
 export async function POST(
   request: NextRequest,
-  { params }: RouteParams
+  context: { params: { id: string } }
 ) {
   try {
     const session = await getServerSession();
@@ -17,7 +13,7 @@ export async function POST(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { id } = params;
+    const { id } = context.params;
 
     const issue = await prisma.accessibilityIssue.findUnique({
       where: {
