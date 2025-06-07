@@ -15,11 +15,5 @@
       },
       "continue": true
     }
-  ],
-  "env": {
-    "NEXTAUTH_URL": "https://accessibility-ai-beryl.vercel.app/",
-    "GOOGLE_CLIENT_ID": "774361993448-n0oo920sce9hrdr8hhb9uh5upc0p8t20.apps.googleusercontent.com",
-    "GOOGLE_CLIENT_SECRET": "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",
-    "DATABASE_URL": "postgres://postgres:postgres@db:5432/postgres"
-  }
+  ]
 } 
