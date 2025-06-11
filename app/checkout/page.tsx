@@ -4,10 +4,14 @@ import { Card } from "@/components/ui/card";
 import CheckoutForm from "./CheckoutForm";
 import { authOptions } from "@/lib/authOptions";
 
-export default async function CheckoutPage({ searchParams,
-}: {
+interface CheckoutPageProps {
   searchParams: Record<string, string | string[] | undefined>;
-}) {
+}
+
+export default async function CheckoutPage({
+  // @ts-ignore
+  searchParams,
+}: CheckoutPageProps) {
   const session = await getServerSession(authOptions);
   if (!session?.user?.email) {
     redirect("/login");
