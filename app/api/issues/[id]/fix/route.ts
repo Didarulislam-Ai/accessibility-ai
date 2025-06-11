@@ -3,7 +3,7 @@ import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/prisma';
 
 type RouteContext = {
-  params: { id: string };
+  params: Promise<{ id: string }>; // Changed from { id: string } to Promise<{ id: string }>
 };
 
 export async function POST(
@@ -17,7 +17,7 @@ export async function POST(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { id } = context.params;
+    const { id } = await context.params; // Added 'await' here
 
     const issue = await prisma.accessibilityIssue.findUnique({
       where: {
