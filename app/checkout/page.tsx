@@ -9,7 +9,6 @@ interface CheckoutPageProps {
 }
 
 export default async function CheckoutPage({
-  // @ts-ignore
   searchParams,
 }: CheckoutPageProps) {
   const session = await getServerSession(authOptions);
