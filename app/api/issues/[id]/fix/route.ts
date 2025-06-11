@@ -2,9 +2,13 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getServerSession } from 'next-auth';
 import { prisma } from '@/lib/prisma';
 
+type RouteContext = {
+  params: { id: string };
+};
+
 export async function POST(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  context: RouteContext
 ) {
   try {
     const session = await getServerSession();
@@ -13,8 +17,7 @@ export async function POST(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    // Await the params since they're now async in Next.js 15
-    const { id } = await params;
+    const { id } = context.params;
 
     const issue = await prisma.accessibilityIssue.findUnique({
       where: {
