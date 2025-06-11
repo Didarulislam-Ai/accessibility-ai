@@ -5,17 +5,18 @@ import CheckoutForm from "./CheckoutForm";
 import { authOptions } from "@/lib/authOptions";
 
 interface CheckoutPageProps {
-  searchParams: Record<string, string | string[] | undefined>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
 export default async function CheckoutPage({
-  searchParams,
+  searchParams: searchParamsPromise,
 }: CheckoutPageProps) {
+  const resolvedSearchParams = await searchParamsPromise;
   const session = await getServerSession(authOptions);
   if (!session?.user?.email) {
     redirect("/login");
   }
-  const plan = typeof searchParams?.plan === 'string' ? searchParams.plan : "";
+  const plan = typeof resolvedSearchParams?.plan === 'string' ? resolvedSearchParams.plan : "";
   return (
     <div className="container mx-auto px-4 py-16">
       <div className="max-w-md mx-auto">
